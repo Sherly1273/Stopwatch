@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stopwatch</h1>
+        <div id="display">00:00:00</div>
+        <div class="buttons">
+            <button onclick="start()">Mulai</button>
+            <button onclick="pause()">Jeda</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let [detik, menit, jam] = [0, 0, 0];
+        let tampil = document.getElementById("display");
+        let timer = null;
+
+        function stopwatch() {
+            detik++;
+            if (detik == 60) {
+                detik = 0;
+                menit++;
+                if (menit == 60) {
+                    menit = 0;
+                    jam++;
+                }
+            }
+
+            let h = jam < 10 ? "0" + jam : jam;
+            let m = menit < 10 ? "0" + menit : menit;
+            let s = detik < 10 ? "0" + detik : detik;
+
+            tampil.innerHTML = `${h}:${m}:${s}`;
+        }
+
+        function start() {
+            if (timer !== null) {
+                clearInterval(timer);
+            }
+            timer = setInterval(stopwatch, 1000);
+        }
+
+        function pause() {
+            clearInterval(timer);
+        }
+
+        function reset() {
+            clearInterval(timer);
+            [detik, menit, jam] = [0, 0, 0];
+            tampil.innerHTML = "00:00:00";
+        }
+        for (let i = 0; i < 30; i++) {
+            const bubble = document.createElement("div");
+            const size = Math.random() * 60 + 10; // ukuran gelembung 10-70px
+            bubble.className = "bubble";
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.animationDuration = `${5 + Math.random() * 5}s`;
+            document.body.appendChild(bubble);
+        }
+  </script>
+    </script>
+</body>
+</html>
