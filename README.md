@@ -4,7 +4,7 @@ Kode ini menggunakan python Untuk menggunakannya :
 2.	python app.py
 
 ﻿# Tampilan Aplikasi
-![Tampilan Aplikasi](https://github.com/Sherly1273/Stopwatch/blob/main/assets/stopwatch.png?raw=true)
+![Tampilan Stopwatch](stopwatch.png)
 
 # Fitur
 •	Mulai
